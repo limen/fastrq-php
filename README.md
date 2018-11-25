@@ -97,7 +97,7 @@ $q->pop();
 $q->pop(2);
 $cq = new CappedQueue("fastrq_capped_queue", 3);
 $cq->push(1);
-$cq->push(2)'
+$cq->push(2);
 $cq->push([3, 4]); // got "err_qof"
 $cq->push(3);
 $cq->push(4); // got "err_qf"
@@ -114,15 +114,15 @@ $dq->pop_front();
 $dq->pop_back();
 
 // priority queue
-$pq = PriorityQueue("fastrq_priority_queue");
-$pq.push({'alibaba': 1});
-$pq.push({'google': 0, 'microsoft': 1});
-$pq.pop();
-$pq.pop(2);
+$pq = new PriorityQueue("fastrq_priority_queue");
+$pq->push(['alibaba' => 1]);
+$pq->push(['google' => 0, 'microsoft' => 1]);
+$pq->pop();
+$pq->pop(2);
 
 // stack
-$s = Stack("fastrq_stack")
-$s->push([1,2,3])
-$s->pop()
+$s = Stack("fastrq_stack");
+$s->push([1,2,3]);
+$s->pop();
 
 ```
