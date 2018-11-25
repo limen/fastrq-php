@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit backupglobals="false"
+         backupstaticattributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         converterrorstoexceptions="true"
+         convertnoticestoexceptions="true"
+         convertwarningstoexceptions="true"
+         processisolation="false"
+         stopOnFailure="false"
+         syntaxcheck="false"
+         verbose="true">
+    <testsuites>
+        <testsuite name="fastrq test suite">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
