@@ -26,12 +26,12 @@ class OfCappedDequeTest extends TestCase
 
     public function testPushPop()
     {
-        $this->queue->push_back([1,2]);
-        $this->assertEquals($this->queue->push_front([3,4]), [3, ['2']]);
-        $this->assertEquals($this->queue->push_front([5,6]), [3, ['1', '3']]);
+        $this->queue->pushBack([1,2]);
+        $this->assertEquals($this->queue->pushFront([3,4]), [3, ['2']]);
+        $this->assertEquals($this->queue->pushFront([5,6]), [3, ['1', '3']]);
         $this->assertEquals($this->queue->range(0,-1), [ '6', '5', '4']);
-        $this->assertEquals($this->queue->pop_back(), '4');
-        $this->assertEquals($this->queue->pop_front(), '6');
+        $this->assertEquals($this->queue->popBack(), '4');
+        $this->assertEquals($this->queue->popFront(), '6');
     }
 
 }
