@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/limen/fastrq-php.svg?branch=master)](https://travis-ci.org/limen/fastrq-php)
 
+[Wiki](https://github.com/limen/fastrq/wiki)
+
 [Fastrq for Python](https://github.com/limen/fastrq)
 
 ## Features
@@ -11,6 +13,67 @@
 + Abstract Priority Queue, Capped Priority Queue and Overflow-able Capped Priority Queue
 + Push and Pop support batch operation
 + Using Lua scripts to save RTT (Round Trip Time)
+
+more in [Wiki](https://github.com/limen/fastrq/wiki)
+
+## install
+
+Recommend to install via composer
+
+```
+composer require limen/fastrq
+```
+
+## Usage
+
+```php
+use Limen\Fastrq\Queue;
+use Limen\Fastrq\Deque;
+use Limen\Fastrq\Stack;
+use Limen\Fastrq\PriorityQueue;
+
+// queue
+$q = new Queue('fastrq-queue');
+$q->push(['hello', 'world']);
+$q->push('!!');
+$q->pop();
+$q->pop(2);
+$q->pushNI('hello');
+$q->pushAE('from');
+$q->pushNE(['from', 'fastrq']);
+
+// deque
+$dq = new Deque('fastrq-deque');
+$dq->pushFront(['hello', 'world']);
+$dq->pushBack('!!');
+$dq->popFront();
+$dq->popBack(2);
+$dq->pushFrontNI('hello');
+$dq->pushBackNI('hello');
+$dq->pushFrontNE('from');
+$dq->pushBackNE(['from', 'fastrq']);
+$dq->pushFrontAE('from');
+$dq->pushBackAE(['from', 'fastrq']);
+
+// stack
+$s = new Stack('fastrq-stack');
+$s->push(['hello', 'world']);
+$s->push('!!');
+$s->pop();
+$s->pop(2);
+$s->pushNI('hello');
+$s->pushAE('from');
+$s->pushNE(['from', 'fastrq']);
+
+// priority queue
+$pq = new PriorityQueue('fastrq-priority-queue');
+$pq->push(['hello' => 1]);
+$pq->push(['hello' => 1, 'world' => 2]);
+$pq->pushNI('fastrq', 2);
+$pq->pushAE(['hello' => 1, 'world' => 2]);
+$pq->pushNE(['hello' => 1, 'world' => 2]);
+
+```
 
 ## Data types
 
@@ -78,51 +141,3 @@ Derive from Capped Priority Queue with more features
 + Push to an end would push out from the other end if queue is full
 
 
-## install
-
-Recommend to install via composer
-
-```
-composer require limen/fastrq
-```
-
-## Usage
-
-```php
-// queue
-$q = new Queue("fastrq_queue");
-$q->push(1);
-$q->push([2, 3]);
-$q->pop();
-$q->pop(2);
-$cq = new CappedQueue("fastrq_capped_queue", 3);
-$cq->push(1);
-$cq->push(2);
-$cq->push([3, 4]); // got "err_qof"
-$cq->push(3);
-$cq->push(4); // got "err_qf"
-$of_cq = new OfCappedQueue("fastrq_of_capped_queue", 3);
-$of_cq->push(1);
-$of_cq->push([2, 3, 4]);  // "1" would be pushed out
-
-
-// deque
-$dq = new Deque("fastrq_deque");
-$dq->push_front([1, 2]);
-$dq->push_back([3, 4]);
-$dq->pop_front();
-$dq->pop_back();
-
-// priority queue
-$pq = new PriorityQueue("fastrq_priority_queue");
-$pq->push(['alibaba' => 1]);
-$pq->push(['google' => 0, 'microsoft' => 1]);
-$pq->pop();
-$pq->pop(2);
-
-// stack
-$s = Stack("fastrq_stack");
-$s->push([1,2,3]);
-$s->pop();
-
-```
